@@ -1,6 +1,6 @@
 {
   "name": "angular-canvas-viewer",
-  "version": "1.0.0",
+  "version": "1.2.0",
   "description": "Viewer multi format directive",
   "main": "gulpfile.js",
   "dependencies": {
@@ -29,10 +29,10 @@
     "ogg",
     "wav"
   ],
-  "author": "fcrohas@gmail.com",
+  "author": "scadete@gmail.com",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/fcrohas/angular-raphael-viewer/issues"
+    "url": "https://github.com/scadete/angular-raphael-viewer/issues"
   },
-  "homepage": "https://github.com/fcrohas/angular-raphael-viewer#readme"
+  "homepage": "https://github.com/scadete/angular-raphael-viewer#readme"
 }

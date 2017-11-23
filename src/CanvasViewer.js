@@ -63,7 +63,7 @@ angular.module('CanvasViewer',[]).directive('canvasViewer', ['$window', '$http',
 			var reader = null;
 
 			// Merge scope with default values
-			scope.options = angular.merge({}, {
+			scope.options = angular.extend({}, {
 				ctx : null,
 				adsrc : null,
 				zoom : {
@@ -213,7 +213,7 @@ angular.module('CanvasViewer',[]).directive('canvasViewer', ['$window', '$http',
 						}
 					}
 	                //
-	                scope.$applyAsync( function() {
+	                scope.$evalAsync( function() {
 	                	applyTransform();
 	                });
                 } else {
@@ -369,7 +369,7 @@ angular.module('CanvasViewer',[]).directive('canvasViewer', ['$window', '$http',
 			});
 
 			scope.zoom = function(direction) {
-				scope.$applyAsync(function() {
+				scope.$evalAsync(function() {
 					var oldWidth, newWidth = 0;
 					var oldHeight, newHeight = 0;
 					// Does reader support zoom ?
@@ -413,7 +413,7 @@ angular.module('CanvasViewer',[]).directive('canvasViewer', ['$window', '$http',
 			}
 
 			scope.rotate = function(direction) {
-				scope.$applyAsync(function() {
+				scope.$evalAsync(function() {
 					scope.options.rotate.value += scope.options.rotate.step * direction;
 					if ((scope.options.rotate.value <= -360) || (scope.options.rotate.value >= 360)) {
 						scope.options.rotate.value = 0;
@@ -452,7 +452,7 @@ angular.module('CanvasViewer',[]).directive('canvasViewer', ['$window', '$http',
 					case 'page' :
 					default : scope.options.zoom.value = Math.min(ratioH,ratioW); 
 				}
-				scope.$applyAsync(function() {
+				scope.$evalAsync(function() {
 					// Round zoom value
 					scope.options.zoom.value = Math.round(scope.options.zoom.value*100)/100;
 					// Update options state
@@ -485,7 +485,7 @@ angular.module('CanvasViewer',[]).directive('canvasViewer', ['$window', '$http',
 			}
 			
 			function resizeCanvas() {
-				scope.$applyAsync(function() {
+				scope.$evalAsync(function() {
 					var canvasSize = canvasEl.parentNode;
 					ctx.canvas.width  = canvasSize.clientWidth;
 					ctx.canvas.height = canvasSize.clientHeight;

@@ -1,1 +1,9 @@
 node_modules
+
+package-lock\.json
+
+\.publish/
+
+dist/
+*.DS_Store
+gh-pages/

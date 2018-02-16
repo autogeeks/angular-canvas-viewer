@@ -195,8 +195,14 @@ angular.module('CanvasViewer',[]).directive('canvasViewer', ['$window', '$http',
 			angular.element(canvasEl).bind("DOMMouseScroll mousewheel onmousewheel", function($event) {
 
                 // cross-browser wheel delta
-                var event = $window.event || $event; // old IE support
-                var delta = Math.max(-1, Math.min(1, (event.wheelDelta || -event.detail)));
+				var event = $window.event || $event; // old IE support
+				
+                var delta = Math.max(-1,
+				    Math.min(1, (event.wheelDelta 
+				    || -event.detail 
+				    || event.originalEvent.wheelDelta 
+					|| -event.originalEvent.detail)));
+
                 if (scope.options.controls.filmStrip) {
 					picPos.y += 50 * delta;
 					// Limit range

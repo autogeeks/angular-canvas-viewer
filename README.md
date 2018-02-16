@@ -28,6 +28,9 @@ A sample demo is available [here](http://fcrohas.github.io/angular-canvas-viewer
 You need  `npm` package manager :
 
     # npm install
+	# npm install -g gulp
+	# npm install -g bower
+	# bower install
     # gulp dist
 
 ## How to test

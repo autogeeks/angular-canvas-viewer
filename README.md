@@ -1,6 +1,9 @@
 ## Description
 
-This is a picture and sound viewer directive for AngularJS
+This is a picture and sound viewer directive for AngularJS (1.2)
+
+Forked from:
+https://github.com/fcrohas/angular-canvas-viewer
 
 ## Demo
 
@@ -26,6 +29,13 @@ You need  `npm` package manager :
 
     # npm install
     # gulp dist
+
+## How to test
+
+Run any http server on root, example :
+
+    # npm install -g http-server
+    # http-server
 
 ## How to use it
 

@@ -1,7 +1,8 @@
 {
-  "name": "angular-raphael-viewer",
+  "name": "angular-canvas-viewer",
   "authors": [
-    "Fabrice Crohas <fcrohas@gmail.com>"
+    "Fabrice Crohas <fcrohas@gmail.com>",
+    "Saulo Cadete <scadete@gmail.com>"
   ],
   "description": "Image viewer using raphaeljs",
   "main": "module.js",
@@ -24,7 +25,7 @@
     "tests"
   ],
   "dependencies": {
-    "angular": "~1.4.8",
+    "angular": "~1.2.29",
     "raphael": "~2.1.4",
     "bootstrap": "~3.3.6",
     "json-formatter": "~0.4.2"

@@ -9,7 +9,8 @@ angular.module('CanvasViewer',[]).directive('canvasViewer', ['$window', '$http',
 			imageSource : '=src',
 			overlays : '=overlays',
 			title : '@title',
-			options : '=options'
+			options : '=options',
+			reader: '=reader'
 		}, // {} = isolate, true = child, false/undefined = no change
 		// controller: ['$scope', '$element', '$attrs', '$transclude' ,function(scope, $element, $attrs, $transclude) {
 		// 	console.log('la',scope.options);
@@ -99,6 +100,7 @@ angular.module('CanvasViewer',[]).directive('canvasViewer', ['$window', '$http',
 				}
 
 				if (reader.rendered) {
+					scope.reader = reader;
 					applyTransform();
 				} else {
 					scope.resizeTo(scope.options.controls.fit);
@@ -113,7 +115,11 @@ angular.module('CanvasViewer',[]).directive('canvasViewer', ['$window', '$http',
 				scope.options.rotate.value = 0;
 				curPos = { x : 0, y : 0};
 				picPos = { x : 0, y : 0};
-
+				
+				if(reader != undefined){
+				  reader.loading = true;
+				}
+						
 				// test if object or string is input of directive
 				if (typeof(value) === 'object') {
 					// Object type file
@@ -127,6 +133,10 @@ angular.module('CanvasViewer',[]).directive('canvasViewer', ['$window', '$http',
 					}
 				} else if(typeof(value) === 'string') {
 					reader = formatReader.CreateReader("image/jpeg").create(value, scope.options, onload, $q, $timeout);
+				}
+				
+				if(reader != undefined){
+				  reader.loading = false;
 				}
 			});
 
@@ -195,8 +205,14 @@ angular.module('CanvasViewer',[]).directive('canvasViewer', ['$window', '$http',
 			angular.element(canvasEl).bind("DOMMouseScroll mousewheel onmousewheel", function($event) {
 
                 // cross-browser wheel delta
-                var event = $window.event || $event; // old IE support
-                var delta = Math.max(-1, Math.min(1, (event.wheelDelta || -event.detail)));
+				var event = $window.event || $event; // old IE support
+				
+                var delta = Math.max(-1,
+				    Math.min(1, (event.wheelDelta 
+				    || -event.detail 
+				    || event.originalEvent.wheelDelta 
+					|| -event.originalEvent.detail)));
+
                 if (scope.options.controls.filmStrip) {
 					picPos.y += 50 * delta;
 					// Limit range
